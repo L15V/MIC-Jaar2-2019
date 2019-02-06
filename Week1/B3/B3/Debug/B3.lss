@@ -159,7 +159,7 @@ int main(void)
   c4:	81 bb       	out	0x11, r24	; 17
     while (1) 
     {
-		if((PINC & 0b00000001) == 0){ //Kijken of PINC is ingedrukt
+		if((PINC & 0b00000001) == 1){ //Kijken of PINC is ingedrukt, want de stroom loopt van de voeding naar de controller dus vandaar dat je kijkt of het signaal 1 is.
 			PORTD = 0b10000000;	//Zet pin 7 van port D op hoog
   c6:	c0 e8       	ldi	r28, 0x80	; 128
 {
@@ -167,8 +167,8 @@ int main(void)
    DDRD = 0xFF;	//Alle pins van PORTD op output zetten.
     while (1) 
     {
-		if((PINC & 0b00000001) == 0){ //Kijken of PINC is ingedrukt
-  c8:	98 99       	sbic	0x13, 0	; 19
+		if((PINC & 0b00000001) == 1){ //Kijken of PINC is ingedrukt, want de stroom loopt van de voeding naar de controller dus vandaar dat je kijkt of het signaal 1 is.
+  c8:	98 9b       	sbis	0x13, 0	; 19
   ca:	09 c0       	rjmp	.+18     	; 0xde <main+0x1e>
 			PORTD = 0b10000000;	//Zet pin 7 van port D op hoog
   cc:	c2 bb       	out	0x12, r28	; 18
